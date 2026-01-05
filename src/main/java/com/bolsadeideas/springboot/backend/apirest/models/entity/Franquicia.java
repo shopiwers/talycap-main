@@ -4,9 +4,12 @@ package com.bolsadeideas.springboot.backend.apirest.models.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
+
 @Table(name = "franquicias")
 public class Franquicia implements Serializable {
 

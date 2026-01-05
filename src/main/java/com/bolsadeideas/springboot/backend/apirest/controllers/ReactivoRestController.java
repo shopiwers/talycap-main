@@ -16,13 +16,14 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 
 
 @RestController
 @RequestMapping("/api/reactiva")
-public class OrdenRestController {
+public class ReactivoRestController {
     @Autowired
     private IFranquiciaService franquiciaService;
 
@@ -50,6 +51,7 @@ public class OrdenRestController {
                 .map(ResponseEntity::ok);
     }
 
+    @Transactional
     @GetMapping
     public Flux<Franquicia> obtenerFranquicias() {
 
@@ -57,6 +59,14 @@ public class OrdenRestController {
                 .subscribeOn(Schedulers.elastic())
                 .flatMapMany(Flux::fromIterable);
     }
+
+   // @Transactional
+//    public List<Franquicia> obtenerFranquiciasReactiva() {
+//        List<Franquicia> lista = franquiciaService.obtenerFranquicias();
+//        lista.forEach(f -> f.getSucursales().size());
+//        return lista;
+//    }
+
 
     // ---------------- SUCURSALES ----------------
 
@@ -166,7 +176,6 @@ public class OrdenRestController {
                 .subscribeOn(Schedulers.elastic())
                 .flatMapMany(Flux::fromIterable);
     }
-
 
 
 }

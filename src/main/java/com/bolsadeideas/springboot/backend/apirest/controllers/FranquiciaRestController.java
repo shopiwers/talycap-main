@@ -15,12 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 
-import reactor.core.scheduler.Schedulers;
-import reactor.core.publisher.Mono;
-import reactor.core.publisher.Flux;
-
-
-
 @RestController
 @RequestMapping("/api/franquicias")
 public class FranquiciaRestController {
@@ -102,20 +96,5 @@ public class FranquiciaRestController {
         List<Franquicia> lista = franquiciaService.obtenerFranquicias();
         return ResponseEntity.ok(lista);
     }
-
-
-
-    @GetMapping("/{franquiciaId}/max-stock-reactiva")
-    public ResponseEntity<List<ProductoSucursalDTO>> productosMaxStockPorFranquiciaReact(
-            @PathVariable Long franquiciaId) {
-
-        List<ProductoSucursalDTO> lista =
-                franquiciaService.productosMaxStockPorFranquiciaReactivo(franquiciaId);
-
-        return ResponseEntity.ok(lista);
-    }
-
-
-
 
 }

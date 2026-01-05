@@ -149,7 +149,7 @@ public class FranquiciaServiceImpl implements IFranquiciaService {
     @Override
     @Transactional(readOnly = true)
     public List<Franquicia> obtenerFranquicias() {
-        return franquiciaDao.findAll();
+        return franquiciaDao.findAllWithSucursales();
     }
 
 
